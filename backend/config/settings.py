@@ -25,5 +25,11 @@ class Settings(BaseSettings):
     # Others
     RAG_MODE: str = "AGENT"  # or CHAIN
 
+    # CORS
+    CORS_ALLOW_ORIGINS: str = Field(
+        default="http://localhost,http://localhost:3000,http://127.0.0.1:3000",
+        description="Comma-separated list of allowed CORS origins",
+    )
+
     class Config:
         env_file = ".env"

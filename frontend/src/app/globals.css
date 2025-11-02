@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 🎨 Theme Variables */
+@theme inline {
+  --color-bg: light-dark(#f9fafb, #0f172a);
+  --color-text: light-dark(#111827, #f8fafc);
+  --color-accent: light-dark(#6366f1, #818cf8);
+  --color-card: light-dark(#ffffff, #1e293b);
+  --color-muted: light-dark(#6b7280, #94a3b8);
+  --font-sans: "Poppins", sans-serif;
+}
+
+/* 🌍 Base Styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* ✨ Custom Utility Classes (Tailwind v4 style) */
+@utility .anime-gradient {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility .card {
+  background: var(--color-card);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+@utility .card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+@utility .btn-primary {
+  background: var(--color-accent);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+@utility .btn-primary:hover {
+  opacity: 0.9;
+}
+
+@utility .fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

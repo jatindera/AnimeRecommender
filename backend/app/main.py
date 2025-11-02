@@ -4,6 +4,10 @@ from fastapi import FastAPI
 # Import lifespan and routers
 from app.core.startup import lifespan
 from app.routes import health_router, recommend_router, vector_router
+from fastapi.middleware.cors import CORSMiddleware
+from config.settings import Settings
+
+settings = Settings()
 
 # ------------------------------------------------------------------------------
 # FastAPI Application Initialization
@@ -13,6 +17,19 @@ app = FastAPI(
     title="Anime Recommender API",
     version="1.0.0",
     lifespan=lifespan,  # Handles startup/shutdown events
+)
+
+# ---------------------------------------------------------------------------
+# CORS Middleware
+# ---------------------------------------------------------------------------
+allow_origins = [origin.strip() for origin in settings.CORS_ALLOW_ORIGINS.split(",") if origin.strip()]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allow_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ------------------------------------------------------------------------------
